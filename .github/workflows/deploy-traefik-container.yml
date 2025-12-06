@@ -8,7 +8,7 @@ jobs:
   Deploy-Jumper-Doc-Container:
     runs-on: ubuntu-latest
     env:
-      REMOTE_VOLUME_DIR: /volume2/docker/jumper-doc/
+      REMOTE_VOLUME_DIR: /volume2/new_docker/jumper-doc/
       DOCKER_COMPOSE_PATH: /usr/local/bin/docker-compose
     steps:
       - uses: actions/checkout@v3
@@ -37,7 +37,6 @@ jobs:
 
       - name: Copy files via rsync (SSH)
         run: |
-          # rsync utilise l'agent SSH et la clé ajoutée
           rsync -avzrs --delete deploy/ ${{ secrets.REMOTE_USER }}@${{ secrets.SSH_HOST }}:${{ env.REMOTE_VOLUME_DIR }}
 
       - name: Run docker compose file
