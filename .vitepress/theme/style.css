@@ -1,0 +1,128 @@
+
+
+:root {
+  --vp-c-react-1: #00DBFF;
+  --vp-c-react-2: #00a8c2;
+  --vp-c-react-3: #007f9d;
+  --vp-c-react-soft: rgba(105, 166, 227, 0.16);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #5c8eda 30%,
+    #41d1ff
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #5c8eda 50%,
+    #47caff 50%
+  );
+  --vp-home-hero-image-filter: blur(44px);
+
+
+  .VPNavBarTitle .title {
+    font-size: 18px;
+  }
+
+  .VPNavBarTitle .VPImage {
+    height: 32px;
+  }
+}
+
+.vuejs {
+  --vp-c-brand-1: var(--vp-c-green-1);
+  --vp-c-brand-2: var(--vp-c-green-2);
+  --vp-c-brand-3: var(--vp-c-green-3);
+  --vp-c-brand-soft: var(--vp-c-green-soft)
+  --vp-code-bg: var(--vp-c-green-soft);
+
+  --vp-code-color: var(--vp-c-green-1);
+  --vp-code-link-color: var(--vp-c-green-1);
+  --vp-code-link-hover-color: var(--vp-c-green-2);
+
+  --vp-custom-block-info-border: transparent;
+  --vp-custom-block-info-text: var(--vp-c-text-1);
+  --vp-custom-block-info-bg: var(--vp-c-green-soft);
+  --vp-custom-block-info-code-bg: var(--vp-c-green-soft);
+
+  strong {
+    color: var(--vp-c-green-1);
+  }
+}
+
+
+.reactjs {
+  --vp-c-brand-1: var(--vp-c-react-2);
+  --vp-c-brand-2: var(--vp-c-react-2);
+  --vp-c-brand-3: var(--vp-c-react-2);
+  --vp-c-brand-soft: var(--vp-c-react-soft)
+  --vp-code-bg: var(--vp-c-react-soft);
+
+  --vp-code-color: var(--vp-c-react-2);
+  --vp-code-link-color: var(--vp-c-react-2);
+  --vp-code-link-hover-color: var(--vp-c-react-2);
+
+  --vp-custom-block-info-border: transparent;
+  --vp-custom-block-info-text: var(--vp-c-text-2);
+  --vp-custom-block-info-bg: var(--vp-c-react-soft);
+  --vp-custom-block-info-code-bg: var(--vp-c-react-soft);
+
+  strong {
+    color: var(--vp-c-react-2);
+  }
+}
+
+
+.dark .reactjs {
+  --vp-c-brand-1: var(--vp-c-react-1);
+  --vp-c-brand-2: var(--vp-c-react-2);
+  --vp-c-brand-3: var(--vp-c-react-3);
+  --vp-c-brand-soft: var(--vp-c-react-soft)
+  --vp-code-bg: var(--vp-c-react-soft);
+
+  --vp-code-color: var(--vp-c-react-1);
+  --vp-code-link-color: var(--vp-c-react-1);
+  --vp-code-link-hover-color: var(--vp-c-react-2);
+
+  --vp-custom-block-info-border: transparent;
+  --vp-custom-block-info-text: var(--vp-c-text-1);
+  --vp-custom-block-info-bg: var(--vp-c-react-soft);
+  --vp-custom-block-info-code-bg: var(--vp-c-react-soft);
+
+  strong {
+    color: var(--vp-c-react-1);
+  }
+}
+
+* {
+  transition: color 0.5s !important;
+}
+
+.notions {
+  strong {
+    color: var(--vp-c-indigo-1);
+  }
+}
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+#side-by-side {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.custom-block-title {
+  display: none;
+}
+
+.custom-block {
+  padding-top: 8px;
+}
+
+summary {
+  margin: 0 !important;
+}

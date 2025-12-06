@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  jumper-doc-nginx:
+    image: nginx:1.25.2-perl
+    restart: always
+    networks:
+      - traefik_network
+    volumes:
+    - ./public:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jumper-doc.rule=Host(`jumper-app.com`)"
+      - "traefik.http.routers.jumper-doc.entrypoints=web, websecure"
+      - "traefik.http.routers.jumper-doc.tls=true"
+      - "traefik.http.routers.jumper-doc.tls.certresolver=letsencrypt"
+      - "traefik.http.services.jumper-doc.loadbalancer.server.port=80"
+networks:
+  traefik_network:
+    external: true
