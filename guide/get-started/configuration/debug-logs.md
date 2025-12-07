@@ -10,7 +10,7 @@ The Carrot server can be launched in debug mode to obtain additional diagnostic 
 
 To enable debug mode, set the following environment variable in your `.env` file:
 
-```env
+```bash
 DEBUG=True
 ```
 

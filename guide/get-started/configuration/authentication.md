@@ -42,6 +42,6 @@ Once OAuth2 authentication is configured, users will be able to log in to Jumper
 
 To disable the possibility of logging in using the traditional email and password method (forcing all users to use the configured OAuth2 provider), simply set the following environment variable:
 
-```env
+```bash
 PASSWORD_BASED_AUTHENTICATION=False
 ```
