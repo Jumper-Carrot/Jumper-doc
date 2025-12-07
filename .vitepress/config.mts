@@ -7,6 +7,7 @@ export default withMermaid(
     title: "Jumper",
     description: "Jumper Website",
     head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+    srcExclude: ['README.md'],
     themeConfig: {
       socialLinks: [
         { icon: "github", link: "https://github.com/Jumper-Carrot" },
