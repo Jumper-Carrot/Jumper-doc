@@ -6,39 +6,42 @@ on:
 
 jobs:
   Deploy-Jumper-Doc-Container:
-      runs-on: ubuntu-latest
-      env:
-        REMOTE_VOLUME_DIR: /volume2/docker/jumper-doc/
-        DOCKER_COMPOSE_PATH: /usr/local/bin/docker-compose
-      steps:
-        - uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    env:
+      REMOTE_VOLUME_DIR: /volume2/new_docker/jumper-doc/
+      DOCKER_COMPOSE_PATH: /usr/local/bin/docker-compose
+    steps:
+      - uses: actions/checkout@v3
 
-        - name: Build Jumper Doc
-          run: |
-            npm install
-            npm run docs:build
-            cp -r .vitepress/dist deploy/public
+      - name: Build Jumper Doc
+        run: |
+          npm install
+          npm run docs:build
+          cp -r .vitepress/dist deploy/public
 
-        - uses: webfactory/ssh-agent@v0.7.0
-          with:
-              ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-        - name: Setup SSH
-          run: |
-            mkdir -p ~/.ssh
-            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-            chmod 600 ~/.ssh/id_ed25519
-            ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Add Remote Host Key to Known Hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-        - name: Copy files via rsync (SSH)
-          run: |
-            rsync -avzr --delete deploy/  ${{ secrets.REMOTE_USER }}@${{ secrets.SSH_HOST }}:${{ env.REMOTE_VOLUME_DIR }}
+      - name: Prepare Remote Directory (mkdir & chmod)
+        run: |
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.SSH_HOST }} 'bash -s' <<EOF
+          mkdir -p ${{ env.REMOTE_VOLUME_DIR }}
+          chmod 755 ${{ env.REMOTE_VOLUME_DIR }}
+          EOF
 
-        - name: Run docker compose file
-          run: |
-            ssh ${{ secrets.REMOTE_USER }}@${{ secrets.SSH_HOST }} 'bash -s' <<EOF
-            mkdir ${{ env.REMOTE_VOLUME_DIR }}
-            chmod 755 ${{ env.REMOTE_VOLUME_DIR }}
-            cd ${{ env.REMOTE_VOLUME_DIR }}
-            ${{ env.DOCKER_COMPOSE_PATH }} up -d --force-recreate
-            EOF
+      - name: Copy files via rsync (SSH)
+        run: |
+          rsync -avzrs --delete deploy/ ${{ secrets.REMOTE_USER }}@${{ secrets.SSH_HOST }}:${{ env.REMOTE_VOLUME_DIR }}
+
+      - name: Run docker compose file
+        run: |
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.SSH_HOST }} 'bash -s' <<EOF
+          cd ${{ env.REMOTE_VOLUME_DIR }}
+          ${{ env.DOCKER_COMPOSE_PATH }} up -d --force-recreate
+          EOF
