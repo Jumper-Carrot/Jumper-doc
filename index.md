@@ -7,8 +7,12 @@ hero:
   tagline: 
   actions:
     - theme: brand
+      text: Discover Jumper
+      link: /guide/intro/what-is-jumper
+    - theme: brand
       text: Getting started
-      link: /courses/frameworkJS/intro
+      link: /guide/get-started/quick-start
+    
 
 # features:
 #   - title: Feature A
