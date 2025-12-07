@@ -10,7 +10,7 @@
   * **🐍 Native Script Execution:** Built-in native execution for **Python** and **Javascript** scripts, with no need to install external dependencies.
   * **🎨 Customizable Interface:** Personalize the interface (branding, sections, layout) for a tailored user experience.
 
-Designed for simplicity, Jumper saves you time when distributing and maintaining your internal tools. To get started, check the [Getting Started guide](https://www.google.com/search?q=getting-started.md).
+Designed for simplicity, Jumper saves you time when distributing and maintaining your internal tools. To get started, check the [Getting Started guide](/guide/get-started/quick-start).
 
 -----
 
